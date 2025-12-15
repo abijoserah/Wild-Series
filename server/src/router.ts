@@ -24,5 +24,6 @@ router.get("/", sayActions.sayWelcome);
 import programActions from "./modules/program/programActions";
 
 router.get("/api/programs", programActions.browse);
+router.get("/api/programs/:id", programActions.read);
 
 export default router;

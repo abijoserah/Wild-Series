@@ -34,4 +34,16 @@ const browse: RequestHandler = (req, res) => {
   }
 };
 
-export default { browse };
+const read: RequestHandler = (req, res) => {
+  const parsedId = Number.parseInt(req.params.id);
+
+  const program = programs.find((p) => p.id === parsedId);
+
+  if (program != null) {
+    res.json(program);
+  } else {
+    res.sendStatus(404);
+  }
+};
+
+export default { browse, read };
