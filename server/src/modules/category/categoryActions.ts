@@ -9,16 +9,21 @@ const categories = [
   },
 ];
 
-// Declare the actions
-
 import type { RequestHandler } from "express";
 
 const browse: RequestHandler = (req, res) => {
   res.json(categories);
 };
 
-/* Here you code */
+const read: RequestHandler = (req, res) => {
+  const parsedId = Number.parseInt(req.params.id);
+  const category = categories.find((category) => category.id === parsedId);
 
-// Export them to import them somewhere else
+  if (category) {
+    res.json(category);
+  } else {
+    res.sendStatus(404);
+  }
+};
 
-export default { browse };
+export default { browse, read };
